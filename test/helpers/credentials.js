@@ -15,7 +15,8 @@ module.exports = (done) => {
       'system:read',
       'system:write',
       'document:read',
-      'document:write'
+      'document:write',
+      'ping'
     ]
   };
 

@@ -18,7 +18,7 @@ const userSchema = mongoose.Schema({
 });
 
 userSchema
-  .pre('save', next => {
+  .pre('save', function(next) {
 
     const user       = this;
     const changePass = user.isModified('password');
@@ -34,7 +34,8 @@ userSchema
 
 userSchema
   .methods
-  .comparePassword = (password, next) => {
+  .comparePassword = function (password, next) {
+
     pbkdf2(password, SALT, ITER, KEYLEN, DIGEST, (err, key) => {
       if (err) { return next(err); }
       const isMatch = this.password === key.toString('hex');

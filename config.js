@@ -2,7 +2,7 @@
 
 const pack     = require('./package.json');
 const path     = require('path');
-const rootPath = path.normalize(__dirname + '/..');
+const rootPath = path.normalize(__dirname);
 
 module.exports = {
       root: rootPath,

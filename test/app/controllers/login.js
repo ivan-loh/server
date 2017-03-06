@@ -1,7 +1,7 @@
 'use strict';
 
 const async    = require('async');
-const uuid = require('uuid/v4')
+const uuid     = require('uuid/v4');
 const chai     = require('chai');
 const chaiHttp = require('chai-http');
 const app      = require('../../../app');
@@ -59,7 +59,7 @@ describe('/login', () => {
       .catch(err => {
         expect(err).to.exist;
         expect(err.status).to.equal(401);
-        expect(err.response.error.text).to.equal('invalid ccredentials');
+        expect(err.response.error.text).to.equal('invalid credentials');
         done();
       })
 

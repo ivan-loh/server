@@ -4,7 +4,7 @@
   "description": "jwt server",
   "main": "server.js",
   "scripts": {
-    "test": "NODE_ENV=testing ./node_modules/mocha/bin/mocha test/ --recursive --timeout=5000"
+    "test": "NODE_ENV=testing ./node_modules/mocha/bin/mocha test/ --recursive --timeout=10000"
   },
   "author": "",
   "license": "ISC",

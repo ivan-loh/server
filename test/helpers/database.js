@@ -17,7 +17,7 @@ module.exports = (done) => {
   const state         = connection.readyState;
 
   if (state === connected || state === connecting ) {
-    return setTimeout(done, 3000);
+    return done();
   }
 
   mongoose.connect(config.db);

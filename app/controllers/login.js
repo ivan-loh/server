@@ -1,12 +1,12 @@
 'use strict';
 
+const { SECRET } = require('../../config');
+
 const jwt      = require('jsonwebtoken');
 const express  = require('express');
 const router   = express.Router();
 const mongoose = require('mongoose');
 const User     = mongoose.model('User');
-const config   = require('../../config');
-const SECRET   = config.secret;
 
 module.exports = (app) => {
   app.use('/login', router);

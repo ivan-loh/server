@@ -1,10 +1,12 @@
 'use strict';
 
+const { SECRET } = require('../../config');
+
 const mongoose = require('mongoose');
 const crypto   = require('crypto');
 const pbkdf2   = crypto.pbkdf2;
 
-const SALT   = require('../../config').secret;
+const SALT   = SECRET;
 const ITER   = 100000;
 const KEYLEN = 512;
 const DIGEST = 'sha512';

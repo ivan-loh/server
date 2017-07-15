@@ -1,11 +1,10 @@
 'use strict';
 
-const { ROOT, DB_URI } = require('./config');
+const { ROOT, DB_URI } = require('../../config');
 
 const glob     = require('glob');
 const doWhilst = require('async/doWhilst');
 const mongoose = require('mongoose');
-const config   = require('../../config');
 
 module.exports = (done) => {
 

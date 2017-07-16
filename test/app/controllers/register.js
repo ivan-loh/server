@@ -10,7 +10,7 @@ const expect   = chai.expect;
 
 chai.use(chaiHttp);
 
-describe('/login', () => {
+describe('/register', () => {
 
   let user, key;
 
@@ -29,20 +29,54 @@ describe('/login', () => {
   });
 
 
-  it('should be able to register properly' , (done) => {
+  it('should be able to register and then login' , (done) => {
 
-    const username = user.username;
-    const password = user.password;
+    const username = uuid();
+    const password = uuid();
 
-    chai
-      .request(app)
-      .post('/register')
-      .send({username, password})
-      .then( response => {
-        expect(response.body).to.exist;
-        done();
-      })
-      .catch(done);
+    async.series([
+
+      next => {
+
+        chai
+          .request(app)
+          .post('/register')
+          .send({username, password})
+          .then( response => {
+            expect(response.body).to.exist;
+
+            const token = response.body.split('.');
+            const header = token[0];
+            const body   = token[1];
+            const sign   = token[2];
+
+            const payload = JSON.parse(new Buffer(body, 'base64').toString());
+
+            expect(payload.username).to.equal(username);
+            expect(payload.password).to.be.undefined;
+
+            next();
+          })
+          .catch(next);
+
+        },
+
+      next => {
+
+        chai
+          .request(app)
+          .post('/login')
+          .send({username, password})
+          .then( response => {
+            expect(response.body).to.exist;
+            next();
+          })
+          .catch(next);
+
+      }
+
+    ], done);
+
   });
 
 });

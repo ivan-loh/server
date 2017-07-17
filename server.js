@@ -1,11 +1,9 @@
 'use strict';
 
-const config = require('./config');
-const app    = require('./app');
+const {PORT} = require('./config');
 
-app.listen(
-  config.port,
-  () => {
-    console.log(`${config.app.name} listening on port ${config.port}`)
-  }
-);
+const app = require('./app');
+
+app.listen(PORT, () => {
+  console.log(`server listening on port ${PORT}`)
+});
